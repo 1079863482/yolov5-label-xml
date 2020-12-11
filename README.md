@@ -1,5 +1,7 @@
 # yolov5-label-xml
 
+### 使用yolov5实现的一个预标注程序
+
 1. 将预训练好的权重放入models/weights中，修改utils/config.py配置文件；
 
 2. 将预标注的图片放入inference/images
