@@ -9,3 +9,8 @@
 3. 运行demo.py文件，结束后预标注的xml文件存放在inference/xmls中、
 
 4. 使用labelimg进行微调。
+
+
+### 配置说明：
+
+yolov5-v3.0版本，需要的torch环境：torch 1.6.0
