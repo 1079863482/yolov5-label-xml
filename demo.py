@@ -66,10 +66,13 @@ if __name__ == '__main__':
     for name in os.listdir(path):
         print(name)
         image = cv2.imread(os.path.join(path,name))
-        list_image = (image.shape[0],image.shape[1],image.shape[2],name)             # 图片的宽高等信息
+        try:
+            list_image = (image.shape[0],image.shape[1],image.shape[2],name)             # 图片的宽高等信息
+        except:
+            continue
 
         img0, xyxy_list,img_crop= yolo.detect(image)       # img0检测后的图像，img_crop裁剪的图像
         create_xml(xyxy_list,list_image,xml_path)          # 生成标注的xml文件
 
-    # r_v = os.system(labelimg)       # 程序结束时直接运行labelimg.exe
+    # r_v = os.system(labelimg)
     # print(r_v)

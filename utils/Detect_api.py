@@ -16,14 +16,16 @@ class Yolo_inference():
         :param image:原图
         :return: 处理后的图片
         """
-        img = narrow_image(image)  # resize img to 416
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        # time4 = time.time()
+        img = letterbox(image,new_shape=640)[0]
+        img = img[:,:,::-1].transpose(2, 0, 1)
+        img = np.ascontiguousarray(img)
         img = torch.from_numpy(img).to(self.device)
         img = img.half() if self.half else img.float()  # uint8 to fp16/32
         img /= 255.0  # 0 - 255 to 0.0 - 1.0
+        # print(img)
         if img.ndimension() == 3:
             img = img.unsqueeze(0)
-        img = img.permute(0, 3, 1, 2)
         return img
 
     def Process(self,pred,img,image,names,colors):
@@ -45,7 +47,7 @@ class Yolo_inference():
                     number_name.append([str(int(xyxy[0])),str(int(xyxy[1])),str(int(xyxy[2])),str(int(xyxy[3])),names[int(cls)]])
         return image, number_name,img_crop
 
-    def detect(self,image,conf_thres=0.3, iou_thres=0.4):
+    def detect(self,image,conf_thres=0.3, iou_thres=0.3):
         """
         前向推理
         :param image:图片
