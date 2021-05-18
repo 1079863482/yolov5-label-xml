@@ -13,4 +13,4 @@
 
 ### 配置说明：
 
-yolov5-v3.0版本，需要的torch环境：torch 1.6.0
+yolov5-v4.0版本，需要的torch环境：torch  >=1.7.0
