@@ -1,6 +1,6 @@
 from utils.utils import *
 import cv2
-from utils.config import model_file
+from utils.config import model_file,img_size
 
 class Yolo_inference():
     def __init__(self):
@@ -17,7 +17,7 @@ class Yolo_inference():
         :return: 处理后的图片
         """
         # time4 = time.time()
-        img = letterbox(image,new_shape=640)[0]
+        img = letterbox(image,new_shape=img_size)[0]
         img = img[:,:,::-1].transpose(2, 0, 1)
         img = np.ascontiguousarray(img)
         img = torch.from_numpy(img).to(self.device)

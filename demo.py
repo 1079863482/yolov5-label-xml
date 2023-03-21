@@ -57,9 +57,17 @@ if __name__ == '__main__':
 
     import os
 
-    path = r"inference/images"        # 图片路径
-    xml_path = r"inference/xmls"      # xml标注保存路径
-    labelimg = r"labelimg.exe"
+    path = r"/home/cai/data/非机动车检测/images_1"          # 图片路径
+    xml_path = r"/home/cai/data/非机动车检测/images_1"      # xml标注保存路径
+    save_detImg = "/home/cai/data/电动车检测/outputs"
+
+    if not os.path.exists(xml_path):
+        os.mkdir(xml_path)
+
+    # if not os.path.exists(save_detImg):
+    #     os.mkdir(save_detImg)
+
+    # labelimg = r"labelimg.exe"
 
     yolo= Detect_api.Yolo_inference()
 
@@ -72,7 +80,11 @@ if __name__ == '__main__':
             continue
 
         img0, xyxy_list,img_crop= yolo.detect(image)       # img0检测后的图像，img_crop裁剪的图像
-        create_xml(xyxy_list,list_image,xml_path)          # 生成标注的xml文件
+        # cv2.imwrite(os.path.join(save_detImg,name),img0)
+
+
+        if len(xyxy_list)>0:
+            create_xml(xyxy_list,list_image,xml_path)          # 生成标注的xml文件
 
     # r_v = os.system(labelimg)
     # print(r_v)
