@@ -57,9 +57,9 @@ if __name__ == '__main__':
 
     import os
 
-    path = r"/home/cai/data/非机动车检测/images_1"          # 图片路径
-    xml_path = r"/home/cai/data/非机动车检测/images_1"      # xml标注保存路径
-    save_detImg = "/home/cai/data/电动车检测/outputs"
+    path = r"./inference/images"          # 图片路径
+    xml_path = r"./inference/xmls"      # xml标注保存路径
+    save_detImg = "./inference/outputs"
 
     if not os.path.exists(xml_path):
         os.mkdir(xml_path)
